@@ -1,3 +1,4 @@
+#' export
 print.openbahn_locationName <- function(x) {
 
   cat("< https://open-api.bahn.de/ >\n< ", x$path, " >\n\n", sep = "")
@@ -5,7 +6,7 @@ print.openbahn_locationName <- function(x) {
   invisible(x)
 
 }
-
+#' export
 print.openbahn_departureBoard <- function(x) {
 
   cat("< https://open-api.bahn.de/ >\n< ", x$path, " >\n\n", sep = "")
@@ -14,7 +15,7 @@ print.openbahn_departureBoard <- function(x) {
   invisible(x)
 
 }
-
+#' export
 print.openbahn_arrivalBoard <- function(x) {
 
   cat("< https://open-api.bahn.de/ >\n< ", x$path, " >\n\n", sep = "")
@@ -23,7 +24,7 @@ print.openbahn_arrivalBoard <- function(x) {
   invisible(x)
 
 }
-
+#' export
 print.openbahn_journeyDetail <- function(x) {
 
   cat("< https://open-api.bahn.de/ >\n< ", x$path, " >\n\n", sep = "")
@@ -32,7 +33,7 @@ print.openbahn_journeyDetail <- function(x) {
   invisible(x)
 
 }
-
+#' export
 openbahn_check_auth <- function() {
   
   x <- Sys.getenv("OPENBAHN_KEY")

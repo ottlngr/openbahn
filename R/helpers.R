@@ -34,13 +34,13 @@ print.openbahn_journeyDetail <- function(x) {
 }
 
 openbahn_check_auth <- function() {
-
+  
   x <- Sys.getenv("OPENBAHN_KEY")
-
+  
   if (x == "") {
     stop("No API key found in the current environment. Please use openbahn_auth() to provide an API key.", .call = FALSE)
   } else {
     cat("Using provided API key.\n\n")
   }
-
+  
 }

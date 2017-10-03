@@ -42,3 +42,9 @@ test_that("journeyDetailsApi() throws error", {
   expect_error(journeyDetailApi(), "No reference url provided.")
   
 })
+
+test_that("openbahn_check_auth() works", {
+  
+  expect_message(openbahn:::openbahn_check_auth(), "Using provided API key.")
+  
+})

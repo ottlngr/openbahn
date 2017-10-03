@@ -1,5 +1,16 @@
-#' @import httr
-#' @import jsonlite
+#' Get an arrival board for a specific station
+#' 
+#' \code{arrivalBoardApi} returns an arrival board for a specific station, date and time.
+#' 
+#' @param id character, the internal ID of the station, received from \code{locationNameApi}.
+#' @param date character, the date of the arrival board in format \code{YYYY-MM-DD}. Must not be a past date.
+#' @param time character, the time of the arrival board in format \code{HH:MM:SS}.
+#' @return A \code{list} containing the \code{path}, \code{response} and \code{content} of the \code{GET} request.
+#' @details \code{arrivalBoardApi()} uses the API key stored by \code{openbahn_auth}.
+#' @author Philipp Ottolinger
+#' @references \url{http://data.deutschebahn.com/dataset/api-fahrplan} 
+#' @importFrom httr modify_url user_agent GET http_type
+#' @importFrom jsonlite fromJSON
 #' @export arrivalBoardApi
 arrivalBoardApi <- function(id, date, time) {
 

@@ -1,5 +1,14 @@
-#' @import httr
-#' @import jsonlite
+#' Find a location
+#' 
+#' \code{locationNameApi()} enables you to find locations and their respective IDs and coordinates known by the API.
+#' 
+#' @param query character, a city or train station to look for
+#' @return A \code{list} containing the \code{path}, \code{response} and \code{content} of the \code{GET} request.
+#' @details \code{locationNameApi()} uses the API key stored by \code{openbahn_auth}.
+#' @author Philipp Ottolinger 
+#' @references \url{http://data.deutschebahn.com/dataset/api-fahrplan}
+#' @importFrom httr modify_url user_agent GET http_type
+#' @importFrom jsonlite fromJSON
 #' @export locationNameApi
 locationNameApi <- function(query) {
 

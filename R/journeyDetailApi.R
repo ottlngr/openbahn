@@ -1,5 +1,15 @@
-#' @import httr
-#' @import jsonlite
+#' Get details of a specific journey
+#' 
+#' \code{journeyDetailApi} returns detailed information on a journey found using \code{departureBoardApi()} or \code{arrivalBoardApi()}.
+#' 
+#' @param reference_url character, a reference url of a journey obtained using \code{departureBoardApi()} or \code{arrivalBoardApi()}.
+#' @return A \code{list} containing the \code{path}, \code{response} and \code{content} of the \code{GET} request.
+#' @details \code{journeyDetailApi()} uses the API key stored by \code{openbahn_auth}.
+#' @author Philipp Ottolinger
+#' @references \url{http://data.deutschebahn.com/dataset/api-fahrplan} 
+#' 
+#' @importFrom httr modify_url user_agent GET http_type
+#' @importFrom jsonlite fromJSON
 #' @export journeyDetailApi
 journeyDetailApi <- function(reference_url) {
 

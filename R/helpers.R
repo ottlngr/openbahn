@@ -37,7 +37,7 @@ print.openbahn_journeyDetail <- function(x) {
 
 }
 
-#' @export
+# #' @export
 openbahn_check_auth <- function() {
   
   x <- Sys.getenv("OPENBAHN_KEY")

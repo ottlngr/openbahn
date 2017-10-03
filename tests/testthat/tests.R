@@ -48,3 +48,19 @@ test_that("openbahn_check_auth() works", {
   expect_message(openbahn:::openbahn_check_auth(), "Using provided API key.")
   
 })
+
+test_that("print methods", {
+  
+  expect_true(capture.output(a)[1] == "< https://open-api.bahn.de/ >")
+  expect_true(capture.output(a)[2] == "< bin/rest.exe/arrivalBoard >")
+  
+  expect_true(capture.output(d)[1] == "< https://open-api.bahn.de/ >")
+  expect_true(capture.output(d)[2] == "< bin/rest.exe/departureBoard >")
+  
+  expect_true(capture.output(l)[1] == "< https://open-api.bahn.de/ >")
+  expect_true(capture.output(l)[2] == "< bin/rest.exe/location.names >")
+  
+  expect_true(capture.output(j)[1] == "< https://open-api.bahn.de/ >")
+  expect_true(capture.output(j)[2] == "< bin/rest.exe/journeyDetail >")
+  
+})

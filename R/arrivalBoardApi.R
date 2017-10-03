@@ -9,7 +9,7 @@
 #' @details \code{arrivalBoardApi()} uses the API key stored by \code{openbahn_auth}.
 #' @author Philipp Ottolinger
 #' @references \url{http://data.deutschebahn.com/dataset/api-fahrplan} 
-#' @importFrom httr modify_url user_agent GET http_type
+#' @importFrom httr modify_url user_agent GET http_type content
 #' @importFrom jsonlite fromJSON
 #' @export arrivalBoardApi
 arrivalBoardApi <- function(id, date, time) {

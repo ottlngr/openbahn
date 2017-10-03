@@ -1,6 +1,6 @@
 l <- locationNameApi("Mainz Hbf")
 a <- arrivalBoardApi("008000240", Sys.Date() + 1, "12:00:00")
-d <- arrivalBoardApi("008000240", Sys.Date() + 1, "12:00:00")
+d <- departureBoardApi("008000240", Sys.Date() + 1, "12:00:00")
 j <- journeyDetailApi(a$content$ArrivalBoard$Arrival$JourneyDetailRef$ref[1])
 
 test_that("Results have the right class", {

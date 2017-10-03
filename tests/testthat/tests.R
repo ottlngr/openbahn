@@ -58,7 +58,7 @@ test_that("print methods", {
   expect_true(capture.output(d)[2] == "< bin/rest.exe/departureBoard >")
   
   expect_true(capture.output(l)[1] == "< https://open-api.bahn.de/ >")
-  expect_true(capture.output(l)[2] == "< bin/rest.exe/location.names >")
+  expect_true(capture.output(l)[2] == "< bin/rest.exe/location.name >")
   
   expect_true(capture.output(j)[1] == "< https://open-api.bahn.de/ >")
   expect_true(capture.output(j)[2] == "< bin/rest.exe/journeyDetail >")

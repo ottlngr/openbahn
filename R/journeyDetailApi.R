@@ -2,7 +2,7 @@
 #' 
 #' \code{journeyDetailApi} returns detailed information on a journey found using \code{departureBoardApi()} or \code{arrivalBoardApi()}.
 #' 
-#' @param reference_url character, a reference url of a journey obtained using \code{departureBoardApi()} or \code{arrivalBoardApi()}u.
+#' @param reference_url character, a reference url of a journey obtained using \code{departureBoardApi()} or \code{arrivalBoardApi()}.
 #' @return A \code{list} containing the \code{path}, \code{response} and \code{content} of the \code{GET} request.
 #' @details \code{journeyDetailApi()} uses the API key stored by \code{openbahn_auth}.
 #' @author Philipp Ottolinger

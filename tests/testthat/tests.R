@@ -28,3 +28,17 @@ test_that("arrivalBoardApi() throws errors", {
   expect_error(arrivalBoardApi(id = "008000240", date = Sys.Date() + 1), "No time provided.")
   
 })
+
+test_that("departureBoardApi() throws errors", {
+  
+  expect_error(departureBoardApi(date = Sys.Date() + 1, time = "12:00:00"), "No id provided.")
+  expect_error(departureBoardApi(id = "008000240", time = "12:00:00"), "No date provided.")
+  expect_error(departureBoardApi(id = "008000240", date = Sys.Date() + 1), "No time provided.")
+  
+})
+
+test_that("journeyDetailsApi() throws error", {
+  
+  expect_error(journeyDetailApi(), "No reference url provided.")
+  
+})

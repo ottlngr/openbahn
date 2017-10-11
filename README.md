@@ -3,6 +3,8 @@
 openbahn
 ========
 
+[![Travis-CI](https://api.travis-ci.org/ottlngr/openbahn.svg)](https://api.travis-ci.org/ottlngr/openbahn.svg)[![codecov](https://codecov.io/gh/ottlngr/openbahn/branch/master/graph/badge.svg)](https://codecov.io/gh/ottlngr/openbahn)
+
 `openbahn` provides functions to easily interact with the Timetable API, provided by the German railroad company *Deutsche Bahn* (DB). At the moment, the API does only provide timetable data for the German long-distance traffic. The following API endpoints exist and are covered by `openbahn`:
 
 -   `location.name` to look up train stations

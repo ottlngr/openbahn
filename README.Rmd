@@ -15,7 +15,7 @@ options(width = 999)
 
 # openbahn
 
-[![Travis-CI](https://api.travis-ci.org/ottlngr/openbahn.svg)](https://api.travis-ci.org/ottlngr/openbahn.svg)[![codecov](https://codecov.io/gh/ottlngr/openbahn/branch/master/graph/badge.svg)](https://codecov.io/gh/ottlngr/openbahn)
+[![Travis-CI](https://api.travis-ci.org/ottlngr/openbahn.svg)](https://travis-ci.org/ottlngr/openbahn)[![codecov](https://codecov.io/gh/ottlngr/openbahn/branch/master/graph/badge.svg)](https://codecov.io/gh/ottlngr/openbahn)
 
 
 

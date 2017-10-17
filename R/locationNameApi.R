@@ -9,6 +9,13 @@
 #' @references \url{http://data.deutschebahn.com/dataset/api-fahrplan}
 #' @importFrom httr modify_url user_agent GET http_type content
 #' @importFrom jsonlite fromJSON
+#' @examples 
+#' \dontrun{
+#' # Set your API key
+#' openbahn_auth("YOUR_KEY_HERE")
+#' # Look for a location or station name
+#' locationNameApi("Mainz Hbf")
+#' }
 #' @export locationNameApi
 locationNameApi <- function(query) {
 

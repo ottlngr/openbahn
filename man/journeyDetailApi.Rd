@@ -18,6 +18,18 @@ A \code{list} containing the \code{path}, \code{response} and \code{content} of 
 \details{
 \code{journeyDetailApi()} uses the API key stored by \code{openbahn_auth}.
 }
+\examples{
+\dontrun{
+# Set your API key
+openbahn_auth("YOUR_KEY_HERE")
+# Get an arrival or departure board for a specific station, date and time
+dep <- departureBoardApi("008000240", date = Sys.Date() + 1, time = "12:00")
+# Get a reference URL for a specific train in the arrival or departure board
+ref <- dep$content$DepartureBoard$Departure$JourneyDetailRef$ref[1]
+# Get train details
+journeyDetailApi(ref)
+}
+}
 \references{
 \url{http://data.deutschebahn.com/dataset/api-fahrplan}
 }

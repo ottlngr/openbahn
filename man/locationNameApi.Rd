@@ -18,6 +18,14 @@ A \code{list} containing the \code{path}, \code{response} and \code{content} of 
 \details{
 \code{locationNameApi()} uses the API key stored by \code{openbahn_auth}.
 }
+\examples{
+\dontrun{
+# Set your API key
+openbahn_auth("YOUR_KEY_HERE")
+# Look for a location or station name
+locationNameApi("Mainz Hbf")
+}
+}
 \references{
 \url{http://data.deutschebahn.com/dataset/api-fahrplan}
 }

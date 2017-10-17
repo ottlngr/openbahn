@@ -7,9 +7,19 @@
 #' @details \code{journeyDetailApi()} uses the API key stored by \code{openbahn_auth}.
 #' @author Philipp Ottolinger
 #' @references \url{http://data.deutschebahn.com/dataset/api-fahrplan} 
-#' 
 #' @importFrom httr modify_url user_agent GET http_type content
 #' @importFrom jsonlite fromJSON
+#' @examples 
+#' \dontrun{
+#' # Set your API key
+#' openbahn_auth("YOUR_KEY_HERE")
+#' # Get an arrival or departure board for a specific station, date and time
+#' dep <- departureBoardApi("008000240", date = Sys.Date() + 1, time = "12:00")
+#' # Get a reference URL for a specific train in the arrival or departure board
+#' ref <- dep$content$DepartureBoard$Departure$JourneyDetailRef$ref[1]
+#' # Get train details
+#' journeyDetailApi(ref)
+#' }
 #' @export journeyDetailApi
 journeyDetailApi <- function(reference_url) {
 

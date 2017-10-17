@@ -15,6 +15,11 @@ openbahn_auth(key)
 \details{
 The API key is stored in the environment variable \code{OPENBAHN_KEY}. In addition, \code{openbahn_auth()} sets another environment variable (\code{OPENBAHN_USER_AGENT}) holding the user agent which is used for HTTP calls.
 }
+\examples{
+\dontrun{
+openbahn_auth("YOUR_API_KEY_HERE")
+}
+}
 \author{
 Philipp Ottolinger
 }

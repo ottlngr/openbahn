@@ -11,6 +11,13 @@
 #' @references \url{http://data.deutschebahn.com/dataset/api-fahrplan} 
 #' @importFrom httr modify_url user_agent GET http_type content
 #' @importFrom jsonlite fromJSON
+#' @examples 
+#' \dontrun{
+#' # Set your API key
+#' openbahn_auth("YOUR_KEY_HERE")
+#' # Get an arrival board for a specific station, date and time
+#' arrivalBoardApi("008000240", date = Sys.Date() + 1, time = "12:00")
+#' }
 #' @export arrivalBoardApi
 arrivalBoardApi <- function(id, date, time) {
 

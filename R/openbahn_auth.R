@@ -20,7 +20,7 @@ openbahn_auth <- function(key) {
     stop("Please provide a character string.", call. = FALSE)
   }
 
-  Sys.setenv(OPENBAHN_KEY = key)
+  uSys.setenv(OPENBAHN_KEY = key)
   Sys.setenv(OPENBAHN_USER_AGENT = "http://github.com/ottlngr/openbahn")
 
 }

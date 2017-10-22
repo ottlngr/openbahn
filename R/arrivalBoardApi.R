@@ -69,9 +69,10 @@ arrivalBoardApi <- function(id, date, time) {
 
   ###
   if ("tyte" %in% colnames(parsed$ArrivalBoard$Arrival)) {
-    parsed$ArrivalBoard$Arrival$type <- ifelse(is.na(parsed$ArrivalBoard$Arrivaltype),
-                                                   parsed$ArrivalBoard$Arrival$tyte,
-                                                   parsed$ArrivalBoard$Arrival$type)
+    parsed$ArrivalBoard$Arrival$type <- ifelse(
+      is.na(parsed$ArrivalBoard$Arrivaltype),
+      parsed$ArrivalBoard$Arrival$tyte,
+      parsed$ArrivalBoard$Arrival$type)
     parsed$ArrivalBoard$Arrival$tyte <- NULL
   }
   ###

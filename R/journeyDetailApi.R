@@ -27,7 +27,6 @@ journeyDetailApi <- function(reference_url) {
     stop("No reference url provided.", call. = FALSE)
   }
 
-  base_url <- "https://open-api.bahn.de/bin/rest.exe/"
   api_path <- "bin/rest.exe/journeyDetail"
 
   request <- reference_url

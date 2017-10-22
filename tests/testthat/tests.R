@@ -92,5 +92,5 @@ test_that("locationNameApi() throws error", {
 test_that("openbahn_auth() throws error", {
 
   expect_error(openbahn_auth(), "Please provide your API key.")
-  expect_error(openbahn_auth(123), "Ṕlease provide a character string.")
+  expect_error(openbahn_auth(123), "Please provide a character")
 })

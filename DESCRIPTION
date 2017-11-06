@@ -15,4 +15,7 @@ RoxygenNote: 6.0.1
 Depends: R (>= 2.10)
 Imports: httr, jsonlite
 Suggests: testthat,
-    covr
+    covr,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

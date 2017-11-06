@@ -1,0 +1,64 @@
+---
+title: "openbahn - Query the Deutsche Bahn Timetable API "
+author: "Philip Ottolinger"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{openbahn}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+# openbahn
+
+In 2016, the German railway company _Deutsche Bahn_ launched its Open Data portal, where a growing number of datasets are made available. Besides datasets, _Deutsche Bahn_ also offers some APIs to access even more data in a machine readable manner.
+
+One of these APIs is the timetable or _Fahrplan_ API, which offers target timetables for the German long-distance rail traffic. `openbahn` is mainly a wrapper around this API and provides additional static datasets from _Deutsche Bahn_.
+
+## Using openbahn
+
+### API key
+
+To use `openbahn` or the timetable API in general, one has to acquire an API key from the _Deutsche Bahn_ Open Data team. The easiest way to get such an API key is to email the Open Data team at [DBOpenData@deutschebahn.com](mailto:DBOpenData@deutschebahn.com) as described on the [website](http://data.deutschebahn.com/dataset/api-fahrplan).
+
+To avoid having to specify the API key with every call to the API, `openbahn` offers the `openbahn_auth()` function to store your API key in an environment variable in your R session. When necessary, `openbahn` will look for this environment variable and will read the API key from it.
+
+```{r,eval=FALSE}
+library(openbahn)
+
+openbahn_auth("YOUR_API_KEY_HERE")
+```
+
+The API key is now stored in your R session in the `OPENBAHN_KEY` variable. Along with the API key, also a user agent is set with `openbahn_auth()` used to identify towards the API:
+
+```{r}
+Sys.getenv("OPENBAHN_USER_AGENT")
+```
+
+### Arrival and departure boards
+
+The timetable API returns arrival and departure boards for a given station on a specific date and time. Each station has an internal ID, which can be obtained from `locationNameApi()` which takes a character as input and returns a couple of stations matching the query:
+
+```{r,echo=FALSE}
+library(openbahn)
+```
+
+```{r}
+locationNameApi("Mainz Hbf")
+```
+
+Along with the station name and ID, `locationNameApi()` also returns the coordinates of the stations, which is handy for spatial applications. For later usage, we will store the station ID of _Mainz Hbf_ in a variable:
+
+```{r}
+station_id <- "008000240"
+```
+
+Now having the desired station ID, `arrivalBoardApi()` and `departureBoardApi()` can be used. To look for trains leaving _Mainz Hbf_ at December 1st, 2017 at 9 a.m., use `departureBoardApi()` as follows:
+
+```{r}
+dep <- departureBoardApi(station_id, "2017-12-01", "09:00")
+dep
+```
+
+
+### Journey details

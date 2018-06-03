@@ -1,7 +1,7 @@
 Package: openbahn
 Type: Package
 Title: Query the Deutsche Bahn Timetable API
-Version: 0.1.0
+Version: 1.0.0
 Authors@R: person("Philipp", "Ottolinger", email = "philipp@ottolinger.de", "role" = c("aut", "cre"))
 Maintainer: Philipp Ottolinger <philipp@ottolinger.de>
 Description: This package queries the Deutsche Bahn Timetable API which covers the German long distance traffic. Each API endpoint is handled by its own function providing searches for locations, retrieval of arrival and departure boards as well as getting further details on specific journeys.
@@ -17,5 +17,8 @@ Imports: httr, jsonlite
 Suggests: testthat,
     covr,
     knitr,
-    rmarkdown
+    rmarkdown,
+    dplyr,
+    ggplot2,
+    ggmap
 VignetteBuilder: knitr

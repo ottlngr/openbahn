@@ -15,16 +15,16 @@ options(width = 999)
 
 # openbahn
 
-[![Travis-CI](https://api.travis-ci.org/ottlngr/openbahn.svg)](https://travis-ci.org/ottlngr/openbahn)[![codecov](https://codecov.io/gh/ottlngr/openbahn/branch/master/graph/badge.svg)](https://codecov.io/gh/ottlngr/openbahn)
+[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/openbahn)](https://cran.r-project.org/package=openbahn) [![Travis-CI](https://api.travis-ci.org/ottlngr/openbahn.svg)](https://travis-ci.org/ottlngr/openbahn) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ottlngr/openbahn?branch=master&svg=true)](https://ci.appveyor.com/project/ottlngr/openbahn) [![codecov](https://codecov.io/gh/ottlngr/openbahn/branch/master/graph/badge.svg)](https://codecov.io/gh/ottlngr/openbahn) [![](http://cranlogs.r-pkg.org/badges/openbahn)](http://cran.rstudio.com/web/packages/openbahn/index.html)
 
 
 
 `openbahn` provides functions to easily interact with the Timetable API, provided by the German railroad company _Deutsche Bahn_ (DB). At the moment, the API does only provide timetable data for the German long-distance traffic. The following API endpoints exist and are covered by `openbahn`:
 
-- `location.name` to look up train stations
-- `arrivalBoard` to retrieve arrival boards
-- `departureBoard` to retrieve departure boards
-- `journeyDetail` to retrieve detailed information for specific trains
+- `openbahn_locations` to look up train stations
+- `openbahn_arrivals` to retrieve arrival boards
+- `openbahn_departures` to retrieve departure boards
+- `openbahn_jounreys` to retrieve detailed information for specific trains
 
 To interact with the API, an API key is required.
 
@@ -53,10 +53,10 @@ library(openbahn)
 openbahn_auth("YOUR_API_KEY_HERE")
 ```
 
-`locationNameApi()` can be used to find a train station along with an internal ID and its coordinates:
+`openbahn_locations()` can be used to find a train station along with an internal ID and its coordinates:
 
 ```{r}
-stations <- locationNameApi("Mainz Hbf")
+stations <- openbahn_locations(query = "Mainz Hbf")
 stations
 ```
 
@@ -65,18 +65,18 @@ To retrieve arrival or departure boards, an `id` found in `stations` can be used
 ```{r}
 mainz_hbf <- stations$content$LocationList$StopLocation$id[1]
 
-departures <- departureBoardApi(id = mainz_hbf, date = "2017-12-01", time = "12:00")
+departures <- openbahn_departures(id = mainz_hbf, date = Sys.Date() + 1, time = "12:00")
 departures
 
-arrivals <- arrivalBoardApi(id = mainz_hbf, date = "2017-12-01", time = "12:00")
+arrivals <- openbahn_arrivals(id = mainz_hbf, date = Sys.Date() + 1, time = "12:00")
 arrivals
 ```
 
-For the particular trains in the arrival or departures board one can retrieve detailed information using  `journeyDetailsApi()`. Therefor, the reference url of the desired train has to be looked up in the `JourneyDetailRef` data.frame:
+For the particular trains in the arrival or departures board one can retrieve detailed information using  `openbahn_journey()`. Therefor, the reference url of the desired train has to be looked up in the `JourneyDetailRef` data.frame:
 
 ```{r}
 reference <- departures$content$DepartureBoard$Departure$JourneyDetailRef$ref[1]
-details <- journeyDetailApi(reference_url = reference)
+details <- openbahn_journeys(reference_url = reference)
 details
 ```
 

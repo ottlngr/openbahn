@@ -23,7 +23,7 @@ To use `openbahn` or the timetable API in general, one has to acquire an API key
 
 To avoid having to specify the API key with every call to the API, `openbahn` offers the `openbahn_auth()` function to store your API key in an environment variable in your R session. When necessary, `openbahn` will look for this environment variable and will read the API key from it.
 
-```{r,eval=FALSE}
+```{r,eval=FALSE,message=FALSE}
 library(openbahn)
 
 openbahn_auth("YOUR_API_KEY_HERE")
@@ -31,7 +31,7 @@ openbahn_auth("YOUR_API_KEY_HERE")
 
 The API key is now stored in your R session in the `OPENBAHN_KEY` variable. Along with the API key, also a user agent is set with `openbahn_auth()` used to identify towards the API:
 
-```{r}
+```{r,message=FALSE}
 Sys.getenv("OPENBAHN_USER_AGENT")
 ```
 
@@ -43,22 +43,61 @@ The timetable API returns arrival and departure boards for a given station on a 
 library(openbahn)
 ```
 
-```{r}
-locationNameApi("Mainz Hbf")
+```{r,message=FALSE}
+openbahn_locations(query = "Mainz Hbf")
 ```
 
-Along with the station name and ID, `locationNameApi()` also returns the coordinates of the stations, which is handy for spatial applications. For later usage, we will store the station ID of _Mainz Hbf_ in a variable:
+Along with the station name and ID, `openbahn_locations()` also returns the coordinates of the stations, which is handy for spatial applications. For later usage, we will store the station ID of _Mainz Hbf_ in a variable:
 
-```{r}
+```{r,message=FALSE}
 station_id <- "008000240"
 ```
 
-Now having the desired station ID, `arrivalBoardApi()` and `departureBoardApi()` can be used. To look for trains leaving _Mainz Hbf_ at December 1st, 2017 at 9 a.m., use `departureBoardApi()` as follows:
+Now having the desired station ID, `openbahn_arrivals()` and `openbahn_departures()` can be used. To look for trains leaving _Mainz Hbf_ at 9 a.m., use `openbahn_departures()` as follows:
 
-```{r}
-dep <- departureBoardApi(station_id, "2017-12-01", "09:00")
+```{r,message=FALSE}
+date <- Sys.Date() + 1
+
+dep <- openbahn_departures(id = station_id, date = date, time = "09:00")
 dep
 ```
 
-
 ### Journey details
+
+The API offers an additional endpoint, which returns details to every connection found by using `openbahn_arrivals()` or `openbahn_departures()`. Using `openbahn_journeys()` one can use the reference links in the arrival or departure boards to get further information such as name and order of all stops, arrival and departure times and geocoordinates of all stops.
+
+Every arrival or departure board has a column with reference links, which can be called with `openbahn_journeys()`:
+
+```{r,message=FALSE}
+url <- dep$content$DepartureBoard$Departure$JourneyDetailRef$ref[1]
+
+journey <- openbahn_journeys(url)
+
+journey
+```
+
+The print method hides the geocoordinates, but they are present in the data.frame:
+
+```{r,message=FALSE}
+str(journey$content$JourneyDetail$Stops$Stop)
+```
+
+Using them it is easy to plot the route of the train onto a map:
+
+```{r,message=FALSE}
+library(dplyr)
+library(ggplot2)
+library(ggmap)
+
+germany <- get_map(c(10.140, 51.276), zoom = 6, maptype = "toner")
+
+data <- journey$content$JourneyDetail$Stops$Stop %>%
+  mutate(lat = as.numeric(lat),
+         lon = as.numeric(lon))
+
+ggmap(germany) + 
+  geom_point(data = data, aes(x = lon, y = lat, group = 1)) +
+  geom_path(data = data, aes(x = lon, y = lat, group = 1)) + 
+  coord_map()
+```
+

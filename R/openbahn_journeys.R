@@ -1,10 +1,10 @@
 #' Get details of a specific journey
 #' 
-#' \code{journeyDetailApi} returns detailed information on a journey found using \code{departureBoardApi()} or \code{arrivalBoardApi()}.
+#' \code{openbahn_journeys} returns detailed information on a journey found using \code{departureBoardApi()} or \code{arrivalBoardApi()}.
 #' 
 #' @param reference_url character, a reference url of a journey obtained using \code{departureBoardApi()} or \code{arrivalBoardApi()}.
 #' @return A \code{list} containing the \code{path}, \code{response} and \code{content} of the \code{GET} request.
-#' @details \code{journeyDetailApi()} uses the API key stored by \code{openbahn_auth}.
+#' @details \code{openbahn_journeys()} uses the API key stored by \code{openbahn_auth}.
 #' @author Philipp Ottolinger
 #' @references \url{http://data.deutschebahn.com/dataset/api-fahrplan} 
 #' @importFrom httr modify_url user_agent GET http_type content
@@ -18,10 +18,10 @@
 #' # Get a reference URL for a specific train in the arrival or departure board
 #' ref <- dep$content$DepartureBoard$Departure$JourneyDetailRef$ref[1]
 #' # Get train details
-#' journeyDetailApi(ref)
+#' openbahn_journeys(ref)
 #' }
-#' @export journeyDetailApi
-journeyDetailApi <- function(reference_url) {
+#' @export openbahn_journeys
+openbahn_journeys <- function(reference_url) {
 
   if (missing(reference_url)) {
     stop("No reference url provided.", call. = FALSE)
@@ -47,7 +47,7 @@ journeyDetailApi <- function(reference_url) {
       path = api_path,
       response = response
     ),
-    class = "openbahn_journeyDetail"
+    class = c("openbahn_journeys")
   )
 
 }

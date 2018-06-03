@@ -1,14 +1,14 @@
-l <- locationNameApi("Mainz Hbf")
-a <- arrivalBoardApi("008000240", Sys.Date() + 1, "12:00:00")
-d <- departureBoardApi("008000240", Sys.Date() + 1, "12:00:00")
-j <- journeyDetailApi(a$content$ArrivalBoard$Arrival$JourneyDetailRef$ref[1])
+l <- openbahn_locations("Mainz Hbf")
+a <- openbahn_arrivals("008000240", Sys.Date() + 1, "12:00:00")
+d <- openbahn_departures("008000240", Sys.Date() + 1, "12:00:00")
+j <- openbahn_journeys(a$content$ArrivalBoard$Arrival$JourneyDetailRef$ref[1])
 
 test_that("Results have the right class", {
 
-  expect_true(class(l) == "openbahn_locationName")
-  expect_true(class(a) == "openbahn_arrivalBoard")
-  expect_true(class(d) == "openbahn_departureBoard")
-  expect_true(class(j) == "openbahn_journeyDetail")
+  expect_true(class(l) == "openbahn_locations")
+  expect_true(class(a) == "openbahn_arrivals")
+  expect_true(class(d) == "openbahn_departures")
+  expect_true(class(j) == "openbahn_journeys")
 
 })
 
@@ -21,35 +21,35 @@ test_that("Results have named objects", {
 
 })
 
-test_that("arrivalBoardApi() throws errors", {
+test_that("openbahn_arrivals() throws errors", {
 
   expect_error(
-    arrivalBoardApi(date = Sys.Date() + 1, time = "12:00:00"),
+    openbahn_arrivals(date = Sys.Date() + 1, time = "12:00:00"),
     "No id provided."
   )
   expect_error(
-    arrivalBoardApi(id = "008000240", time = "12:00:00"),
+    openbahn_arrivals(id = "008000240", time = "12:00:00"),
     "No date provided."
   )
   expect_error(
-    arrivalBoardApi(id = "008000240", date = Sys.Date() + 1),
+    openbahn_arrivals(id = "008000240", date = Sys.Date() + 1),
     "No time provided."
   )
 
 })
 
-test_that("departureBoardApi() throws errors", {
+test_that("openbahn_departures() throws errors", {
 
   expect_error(
-    departureBoardApi(date = Sys.Date() + 1, time = "12:00:00"),
+    openbahn_departures(date = Sys.Date() + 1, time = "12:00:00"),
     "No id provided."
   )
   expect_error(
-    departureBoardApi(id = "008000240", time = "12:00:00"),
+    openbahn_departures(id = "008000240", time = "12:00:00"),
     "No date provided."
   )
   expect_error(
-    departureBoardApi(id = "008000240", date = Sys.Date() + 1),
+    openbahn_departures(id = "008000240", date = Sys.Date() + 1),
     "No time provided."
   )
 
@@ -57,7 +57,7 @@ test_that("departureBoardApi() throws errors", {
 
 test_that("journeyDetailsApi() throws error", {
 
-  expect_error(journeyDetailApi(), "No reference url provided.")
+  expect_error(openbahn_journeys(), "No reference url provided.")
 
 })
 
@@ -83,9 +83,9 @@ test_that("print methods", {
 
 })
 
-test_that("locationNameApi() throws error", {
+test_that("openbahn_locations() throws error", {
 
-  expect_error(locationNameApi(), "No query string provided.")
+  expect_error(openbahn_locations(), "No query string provided.")
 
 })
 

@@ -1,10 +1,10 @@
 #' Find a location
 #' 
-#' \code{locationNameApi()} enables you to find locations and their respective IDs and coordinates known by the API.
+#' \code{openbahn_locations()} enables you to find locations and their respective IDs and coordinates known by the API.
 #' 
 #' @param query character, a city or train station to look for
 #' @return A \code{list} containing the \code{path}, \code{response} and \code{content} of the \code{GET} request.
-#' @details \code{locationNameApi()} uses the API key stored by \code{openbahn_auth}.
+#' @details \code{openbahn_locations()} uses the API key stored by \code{openbahn_auth}.
 #' @author Philipp Ottolinger 
 #' @references \url{http://data.deutschebahn.com/dataset/api-fahrplan}
 #' @importFrom httr modify_url user_agent GET http_type content
@@ -14,10 +14,10 @@
 #' # Set your API key
 #' openbahn_auth("YOUR_KEY_HERE")
 #' # Look for a location or station name
-#' locationNameApi("Mainz Hbf")
+#' openbahn_locations("Mainz Hbf")
 #' }
-#' @export locationNameApi
-locationNameApi <- function(query) {
+#' @export openbahn_locations
+openbahn_locations <- function(query) {
 
   if (missing(query)) {
     stop("No query string provided.", call. = FALSE)
@@ -52,6 +52,6 @@ locationNameApi <- function(query) {
       path = api_path,
       response = response
     ),
-    class = "openbahn_locationName"
+    class = "openbahn_locations"
   )
 }

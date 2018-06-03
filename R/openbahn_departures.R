@@ -1,12 +1,12 @@
 #' Get a departure board for a specific station
 #' 
-#' \code{departureBoardApi} returns a departure board for a specific station, date and time.
+#' \code{openbahn_departures} returns a departure board for a specific station, date and time.
 #' 
 #' @param id character, the internal ID of the station, received from \code{locationNameApi}.
 #' @param date character, the date of the departure board in format \code{YYYY-MM-DD}. Must not be a past date.
 #' @param time character, the time of the departure board in format \code{HH:MM:SS}.
 #' @return A \code{list} containing the \code{path}, \code{response} and \code{content} of the \code{GET} request.
-#' @details \code{departureBoardApi()} uses the API key stored by \code{openbahn_auth}.
+#' @details \code{openbahn_departures()} uses the API key stored by \code{openbahn_auth}.
 #' @author Philipp Ottolinger
 #' @references \url{http://data.deutschebahn.com/dataset/api-fahrplan} 
 #' @importFrom httr modify_url user_agent GET http_type content
@@ -16,10 +16,10 @@
 #' # Set your API key
 #' openbahn_auth("YOUR_KEY_HERE")
 #' # Get a departure board for a specific station, date and time
-#' departureBoardApi("008000240", date = Sys.Date() + 1, time = "12:00")
+#' openbahn_departures("008000240", date = Sys.Date() + 1, time = "12:00")
 #' }
-#' @export departureBoardApi
-departureBoardApi <- function(id, date, time) {
+#' @export openbahn_departures
+openbahn_departures <- function(id, date, time) {
   if (missing(id)) {
     stop("No id provided.", call. = FALSE)
   }
@@ -87,6 +87,6 @@ departureBoardApi <- function(id, date, time) {
     path = api_path,
     response = response
   ),
-  class = "openbahn_departureBoard")
+  class = "openbahn_departures")
 
 }

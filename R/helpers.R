@@ -1,5 +1,5 @@
 #' @export
-print.openbahn_locationName <- function(x, ...) {
+print.openbahn_locations <- function(x, ...) {
 
   cat("< https://open-api.bahn.de/ >\n< ", x$path, " >\n\n", sep = "")
   print(x$content$LocationList$StopLocation)
@@ -8,7 +8,7 @@ print.openbahn_locationName <- function(x, ...) {
 }
 
 #' @export
-print.openbahn_departureBoard <- function(x, ...) {
+print.openbahn_departures <- function(x, ...) {
 
   cat("< https://open-api.bahn.de/ >\n< ", x$path, " >\n\n", sep = "")
   obj <- x$content$DepartureBoard$Departure
@@ -25,7 +25,7 @@ print.openbahn_departureBoard <- function(x, ...) {
 }
 
 #' @export
-print.openbahn_arrivalBoard <- function(x, ...) {
+print.openbahn_arrivals <- function(x, ...) {
 
   cat("< https://open-api.bahn.de/ >\n< ", x$path, " >\n\n", sep = "")
   obj <- x$content$ArrivalBoard$Arrival
@@ -42,7 +42,7 @@ print.openbahn_arrivalBoard <- function(x, ...) {
 }
 
 #' @export
-print.openbahn_journeyDetail <- function(x, ...) {
+print.openbahn_journeys <- function(x, ...) {
 
   cat("< https://open-api.bahn.de/ >\n< ", x$path, " >\n\n", sep = "")
   obj <- x$content$JourneyDetail$Stops$Stop
